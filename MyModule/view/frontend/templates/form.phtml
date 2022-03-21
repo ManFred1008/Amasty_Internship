@@ -1,0 +1,25 @@
+<?php
+/** @var \Amasty\MyModule\Block\Form $block */
+?>
+
+<form class="form andrewbar" action="#">
+    <div class="input sku">
+        <label class="label" for="sku"><span><?= $block->escapeHtml(__('SKU')) ?></span></label>
+        <input type="text" name="sku" id="sku" title="<?= $block->escapeHtmlAttr(__('SKU')) ?>"/>
+    </div>
+
+    <div class="input qty">
+        <label class="label" for="qty"><span><?= $block->escapeHtml(__('QTY')) ?></span></label>
+        <input type="number" name="qty" id="qty" title="<?= $block->escapeHtmlAttr(__('QTY')) ?>"/>
+    </div>
+
+    <div class="additional-info">
+        <?= $block->getChildHtml("Amasty_andrewbar.additional") ?>
+    </div>
+
+    <div class="submit-form-andrewbar">
+        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" >
+            <span><?= $block->escapeHtml(__('Submit')) ?></span>
+        </button>
+    </div>
+</form>
