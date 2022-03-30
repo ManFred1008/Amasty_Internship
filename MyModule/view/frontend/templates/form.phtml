@@ -2,16 +2,18 @@
 /** @var \Amasty\MyModule\Block\Form $block */
 ?>
 
-<form class="form andrewbar" action="#">
+<form class="form andrewbar" action="<?= $block->escapeUrl($block->getFormAction()) ?>" method="post">
     <div class="input sku">
         <label class="label" for="sku"><span><?= $block->escapeHtml(__('SKU')) ?></span></label>
         <input type="text" name="sku" id="sku" title="<?= $block->escapeHtmlAttr(__('SKU')) ?>"/>
     </div>
 
+    <?php if ($block->getQty()) {echo '
     <div class="input qty">
-        <label class="label" for="qty"><span><?= $block->escapeHtml(__('QTY')) ?></span></label>
-        <input type="number" name="qty" id="qty" title="<?= $block->escapeHtmlAttr(__('QTY')) ?>"/>
+        <label class="label" for="qty"><span>'. $block->escapeHtml(__('QTY')) .'</span></label>
+        <input type="number" name="qty" id="qty" title="'. $block->escapeHtmlAttr(__('QTY')) .'" value="'. $block->getQtyValue() .'"/>
     </div>
+    ';} ?>
 
     <div class="additional-info">
         <?= $block->getChildHtml("Amasty_andrewbar.additional") ?>
@@ -23,3 +25,7 @@
         </button>
     </div>
 </form>
+
+
+
+
