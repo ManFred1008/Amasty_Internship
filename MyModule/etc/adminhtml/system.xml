@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="my_module" translate="label" sortOrder="15">
+            <label>Amasty My Module</label>
+        </tab>
+        <section id="my_module_config" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>My Module Config</label>
+            <tab>my_module</tab>
+            <resource>Amasty_MyModule::config</resource>
+
+            <group id="general" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Main Configuration</label>
+                <field id="enabled" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="welcome_text" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Welcome Text</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="qty_settings" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>QTY Settings</label>
+                <field id="qty_enabled" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>QTY Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_qty" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Value</label>
+                    <validate>validate-digits required-entry</validate>
+                    <depends>
+                        <field id="qty_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
