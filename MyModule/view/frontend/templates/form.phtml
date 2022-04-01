@@ -8,12 +8,12 @@
         <input type="text" name="sku" id="sku" title="<?= $block->escapeHtmlAttr(__('SKU')) ?>"/>
     </div>
 
-    <?php if ($block->getQty()) {echo '
+    <?php if ($block->isQtyInputEnabled()):?>
     <div class="input qty">
-        <label class="label" for="qty"><span>'. $block->escapeHtml(__('QTY')) .'</span></label>
-        <input type="number" name="qty" id="qty" title="'. $block->escapeHtmlAttr(__('QTY')) .'" value="'. $block->getQtyValue() .'"/>
+        <label class="label" for="qty"><span> <?=$block->escapeHtml(__('QTY'))?> </span></label>
+        <input type="number" name="qty" id="qty" title="<?= $block->escapeHtmlAttr(__('QTY'))?>" value="<?=$block->getQtyValue()?>"/>
     </div>
-    ';} ?>
+    <?php endif;?>
 
     <div class="additional-info">
         <?= $block->getChildHtml("Amasty_andrewbar.additional") ?>

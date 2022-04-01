@@ -32,9 +32,9 @@ class Form extends Template
         return $this->getUrl('andrewbar/index/addtocart', ['_secure' => true]);
     }
 
-    public function getQty()
+    public function isQtyInputEnabled()
     {
-        return ($this->scopeConfig->isSetFlag('my_module_config/qty_settings/qty_enabled')) ?: false;
+        return ($this->scopeConfig->isSetFlag('my_module_config/qty_settings/qty_enabled'));
     }
 
     public function getQtyValue()
