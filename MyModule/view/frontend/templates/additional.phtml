@@ -1,1 +1,40 @@
 <p>Здесь будет таймер, который я сделаю в другом задании.</p>
+
+<script>
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     document.getElementsByClassName('logo')[0].style.display = 'none';
+    //     document.getElementsByClassName('page-footer')[0].style.display = 'none';
+    // });
+
+    // require(['jquery'], function ($) {
+    //     $('.page-footer').hide();
+    //     }
+    // )
+
+</script>
+
+<script type="text/x-magento-init">
+    {
+        ".logo": {
+            "Amasty_MyModule/js/hider": {
+                "selector":".page-footer"
+            }
+        }
+    }
+</script>
+
+<div class="search-widget">
+    <label for="test-search-input">Search: </label>
+    <input type="text" name="test-search" id="test-search-input">
+    <ul class="search-result-list"></ul>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".search-widget": {
+            "Amasty_MyModule/js/widgetAutoComplete": {
+                "minChars": 3
+            }
+        }
+    }
+</script>
