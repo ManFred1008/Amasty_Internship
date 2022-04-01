@@ -35,9 +35,13 @@ class AddToCart extends Action
 
     public function execute()
     {
-        if(empty($_POST['sku']) || empty($_POST['qty'])) {
-            die('<a href="http://localhost/magento/andrewbar">Fill up the fields: sku, qty.</a>');
+        $data = $this->getRequest()->getParams();
+
+        if(empty($data['sku']) || empty($data['qty'])) {
+            $this->messageManager->addErrorMessage('Fill up the fields: SKU, QTY.');
+            return $this->resultRedirectFactory->create()->setPath('andrewbar');
         }
+
         $quote = $this->checkoutSession->getQuote();
 
         if(!$quote->getId()) {
@@ -45,20 +49,30 @@ class AddToCart extends Action
         }
 
         try {
-            $product = $this->productRepository->get($_POST['sku']);
+            $product = $this->productRepository->get($data['sku']);
         } catch (\Exception $e) {
-            if ($e->getCode() === 0) die('Wrong sku! <a href="http://localhost/magento/andrewbar">Input right product-sku!</a>');
+            if ($e->getCode() === 0) {
+                $this->messageManager->addNoticeMessage('Wrong sku! Input right product-sku!');
+                return $this->resultRedirectFactory->create()->setPath('andrewbar');
+            }
         }
 
-        if($product->getTypeId() != 'simple') die('The product is not simple! Please, <a href="http://localhost/magento/andrewbar">Choose simple product!</a>');
+        if($product->getTypeId() != 'simple') {
+            $this->messageManager->addNoticeMessage('The product is not simple! Please, choose simple product!');
+            return $this->resultRedirectFactory->create()->setPath('andrewbar');
+        }
 
         $stockItem = $product->getExtensionAttributes()->getStockItem();
 
-        if ($stockItem->getQty() < $_POST['qty']) die('There is not enough of the product quantity. Please, <a href="http://localhost/magento/andrewbar">Choose the quantity less than '. $stockItem->getQty() .'</a>');
+        if ($stockItem->getQty() < $data['qty']) {
+            $this->messageManager->addNoticeMessage('Please, choose quantity less than ' . $stockItem->getQty() );
+            return $this->resultRedirectFactory->create()->setPath('andrewbar');
+        }
 
-//        die('prod');
-        $quote->addProduct($product, $_POST['qty']);
+        $quote->addProduct($product, $data['qty']);
         $quote->save();
-        $this->_redirect('andrewbar');
+        $this->messageManager->addSuccessMessage('The Product is added to cart!');
+        return $this->resultRedirectFactory->create()->setPath('andrewbar');
     }
+
 }
