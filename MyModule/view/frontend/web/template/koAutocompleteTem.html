@@ -1,0 +1,9 @@
+<div>
+    <label for="test-ko-search-input">Search-KO: </label>
+    <input type="text" name="some-search" id="test-ko-search-input" data-bind="textInput: searchText"/>
+
+    <ul data-bind="foreach: searchResult">
+        <li data-bind="text: sku"></li>
+<!--        <li data-bind="text: $data"></li>-->
+    </ul>
+</div>

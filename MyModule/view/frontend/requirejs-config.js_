@@ -1,0 +1,14 @@
+var config = {
+    map: {
+        '*': {
+            'Amasty_MyModule/js/hider' : 'Amasty_MyModule/js/hider-mapping'
+        }
+    }
+    // config : {
+    //     mixins: {
+    //         'Amasty_MyModule/js/hider': {
+    //             'Amasty_MyModule/js/hider-mixin': true
+    //         }
+    //     }
+    // }
+}

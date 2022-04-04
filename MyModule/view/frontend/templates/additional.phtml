@@ -38,3 +38,23 @@
         }
     }
 </script>
+
+<div data-bind="scope:'testAutocomplete'">
+<!-- ko template : getTemplate() -->
+    <!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "testAutocomplete": {
+                        "component": "Amasty_MyModule/js/koAutocomplete",
+                        "template": "Amasty_MyModule/koAutocompleteTem"
+                    }
+                }
+            }
+        }
+    }
+</script>
